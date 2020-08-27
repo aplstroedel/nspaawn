@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
-if [[ ! -d /nspawn ]]
-then
- mkdir /nspawn
- chown -R "$USER:$USER" /nspawn
-fi
 
-dest=/nspawn/"$1"
+dest=/var/lib/machines/"$1"
 if [[ ! -d "$dest" ]]
 then
  mkdir "$dest"
