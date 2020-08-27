@@ -4,8 +4,8 @@ systemd-nspawn wrapper
 instructions:
 - git clone https://github.com/aplstroedel/nspaawn.git
 - cd nspaawn
-- chmod +x nspawn
-- sudo nspaawn [name] [release]
+- chmod +x ./nspaawn
+- sudo ./nspaawn [name] [release]
 
 note:
 - first time it will just open a shell, you should change the password from the root account then.
