@@ -1,0 +1,11 @@
+#!/bin/bash
+if [[ ! -d /nspawn ]]
+then
+ mkdir /nspawn
+ chown -R "$USER:$USER" /nspawn
+fi
+
+dest=/nspawn/"$1"
+mkdir "$dest"
+debootstrap --arch=amd64 "$2" "$dest"
+systemd-nspawn -D "$dest" --machine "$1" --network-bridge=br0 -b
