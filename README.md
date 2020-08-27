@@ -2,7 +2,7 @@
 systemd-nspawn wrapper
 
 instructions:
-- git clone https://github.com/aplstroedel/nspaawn
+- git clone https://github.com/aplstroedel/nspaawn.git
 - cd nspaawn
 - chmod +x nspawn
 - sudo nspaawn [name] [release]
