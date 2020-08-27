@@ -5,7 +5,7 @@ if [[ ! -d "$dest" ]]
 then
  mkdir "$dest"
  debootstrap --arch=amd64 "$2" "$dest"
- systemd-nspawn -D "$dest" --machine "$1" --network-bridge=br0
+ systemd-nspawn -D "$dest" --machine="$1" --network-bridge=br0
 else
- systemd-nspawn -D "$dest" --machine "$1" --network-bridge=br0 -b
+ systemd-nspawn -D "$dest" --machine="$1" --network-bridge=br0 -b
 fi
