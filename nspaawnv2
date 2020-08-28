@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+OPTIND=1
+while getopts "isb:m:r:h" options
+do
+ case "$options" in
+ i) init=true;;
+ s) start=true;;
+ n) name=$OPTARG;;
+ b) bridge=$OPTARG;;
+ m) macvlan=$OPTARG;;
+ r) release=$OPTARG;;
+ h) printf '%s\n' '
+  i) init
+  s) start
+  n) name
+  b) bridge
+  m) macvlan
+  r) release
+  h) help
+ ';;
+ esac
+done
+
+dest=/var/lib/machines
+
+if [[ "$init" && "$name" && "$release" && "$bridge" ]]
+then
+ mkdir /var/lib/machines/"$name"
+ debootstrap --arch=amd64 "$release" "$dest/$name"
+ systemd-nspawn -D "$dest/$name" --network-bridge="$bridge"
+elif [[ "$start" && "$bridge" ]]
+then
+ systemd-nspawn -D "$dest/$name" --network-bridge="$bridge" -b
+elif [[ "$start" && "$bridge" && "$macvlan" ]]
+then
+ systemd-nspawn -D "$dest/$name" --network-bridge="$bridge" --network-macvlan="$macvlan" -b
+fi
