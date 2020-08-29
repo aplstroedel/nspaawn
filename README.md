@@ -5,7 +5,6 @@ instructions:
 - git clone https://github.com/aplstroedel/nspaawn.git
 - cd nspaawn
 - chmod +x ./nspaawn
-- sudo ./nspaawn [name] [release]
 
 how to:
   1. initiate a machine like this: sudo ./nspaawn -i -n c1 -r jessie.
