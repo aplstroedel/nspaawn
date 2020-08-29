@@ -35,7 +35,7 @@ if [[ "$init" == true && "$name" && "$release" ]]    # nspaawn -i -n c1 -r jessi
 then
  mkdir "$dest/$name"
  debootstrap --arch=amd64 "$release" "$dest/$name"
-elif [[ "$prepare" == true && "$name ]]
+elif [[ "$prepare" == true && "$name" ]]
 then
  systemd-nspawn -D "$dest/$name"
 elif [[ "$start" && "$name" && "$bridge" ]]    # nspaawn -s -n c1 -b br0
