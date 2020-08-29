@@ -20,10 +20,10 @@ do
   r) release
   h) help
   1. initiate a machine like this: sudo ./nspaawn -i -n c1 -r jessie.
-  2. remove /var/lib/machine/your-container/etc/securetty manually.
+  2. go and remove /var/lib/machine/c1/etc/securetty manually.
   3. change root password after using: sudo ./nspaawn -p -n c1.
   4. exit the container by pressing ^+]]].
-  5. boot back into the machine like this: sudo nspaawn -s -n c1 -b br0.
+  5. boot back into the machine like this: sudo ./nspaawn -s -n c1 -b br0.
 ';;
 
  esac
