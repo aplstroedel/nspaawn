@@ -7,7 +7,9 @@ instructions:
 - chmod +x ./nspaawn
 - sudo ./nspaawn [name] [release]
 
-note:
-- first time it will just open a shell, you should change the password from the root account then.
-- you might need to remove /etc/securetty first from the container directory if you can not login with the root account.
-- next time you run the nspaawn, you will boot into the container and are able to login with your new password.
+how to:
+  1. initiate a machine like this: sudo ./nspaawn -i -n c1 -r jessie.
+  2. go and remove /var/lib/machine/c1/etc/securetty manually.
+  3. change root password after using: sudo ./nspaawn -p -n c1.
+  4. exit the container by pressing ^+]]].
+  5. boot back into the machine like this: sudo ./nspaawn -s -n c1 -b br0.
