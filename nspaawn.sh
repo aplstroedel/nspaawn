@@ -26,28 +26,28 @@ do
   m) macvlan
   r) release
   h) help
-  1. initiate a machine like this: sudo ./nspaawn -i -n c1 -r jessie.
+  1. initiate a machine like this: sudo ./nspaawn.sh -i -n c1 -r jessie.
   2. go and remove /var/lib/machine/c1/etc/securetty manually.
-  3. change root password after using: sudo ./nspaawn -p -n c1.
+  3. change root password after using: sudo ./nspaawn.sh -p -n c1.
   4. exit the container by pressing ^+]]].
-  5. boot back into the machine like this: sudo ./nspaawn -s -n c1 -b br0.
+  5. boot back into the machine like this: sudo ./nspaawn.sh -s -n c1 -b br0.
  ';;
  esac
 done
 
 dest=/var/lib/machines
 
-if [[ "$init" == true && "$name" && "$release" ]]    # nspaawn -i -n c1 -r jessie -b br0
+if [[ "$init" == true && "$name" && "$release" ]]    # ./nspaawn.sh -i -n c1 -r jessie -b br0
 then
  mkdir "$dest/$name"
  debootstrap --arch=amd64 "$release" "$dest/$name"
-elif [[ "$prepare" == true && "$name" ]]    # nspaawn -p -n c1
+elif [[ "$prepare" == true && "$name" ]]    # ./nspaawn.sh -p -n c1
 then
  systemd-nspawn -D "$dest/$name"
-elif [[ "$start" && "$name" && "$bridge" ]]    # nspaawn -s -n c1 -b br0
+elif [[ "$start" && "$name" && "$bridge" ]]    # ./nspaawn.sh -s -n c1 -b br0
 then
  systemd-nspawn -D "$dest/$name" --network-bridge="$bridge" -b
-elif [[ "$start" == true && "$name" && "$bridge" && "$macvlan" ]]    # nspaawn -s -n c1 -b br0 -m br0.10
+elif [[ "$start" == true && "$name" && "$bridge" && "$macvlan" ]]    # ./nspaawn.sh -s -n c1 -b br0 -m br0.10
 then
  systemd-nspawn -D "$dest/$name" --network-bridge="$bridge" --network-macvlan="$macvlan" -b
 fi
